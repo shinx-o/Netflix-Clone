@@ -16,12 +16,12 @@ export default function List() {
         let distance = listRef.current.getBoundingClientRect().x - 50;
         if (dir === 'left' && slideNumber > 0) {
             setSlideNumber(slideNumber - 1);
-            listRef.current.style.transform = `translateX(${2093 + distance}px)`;
+            listRef.current.style.transform = `translateX(${1840 + distance}px)`;
         }
         
         if (dir === 'right' && slideNumber < 7) {
             setSlideNumber(slideNumber + 1);
-            listRef.current.style.transform = `translateX(${-2093 + distance}px)`;
+            listRef.current.style.transform = `translateX(${-1840 + distance}px)`;
         }
     }
 
@@ -31,78 +31,15 @@ export default function List() {
             <div className="wrapper">
                 <ArrowBackIosOutlinedIcon className='slider-arrow left' onClick={() => {sliderMove('left') }} style={{display : !isMoved && 'none'}}/>
                 <div className="container" ref={listRef} >
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />                    
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />                    
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />                
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />                
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />                    
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />                    
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    
-                    
+                    <ListItem index={0}/>
+                    <ListItem index={1}/>
+                    <ListItem index={2}/>
+                    <ListItem index={3}/>
+                    <ListItem index={4}/>
+                    <ListItem index={5}/>
+                    <ListItem index={6}/>
+                    <ListItem index={7}/>
+                    <ListItem index={8}/>
                 </div>
                 <ArrowForwardIosOutlinedIcon className='slider-arrow right' onClick={() => { sliderMove('right') }} />
             </div>
