@@ -1,0 +1,210 @@
+.product {
+    flex: 5;
+    color: whitesmoke;
+    margin: 0 30px;
+    padding: 5px 20px;
+
+    .product-title-container {
+        margin: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 8px;
+
+        button {
+            padding: 10px 15px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 10px;
+            border: none;
+            background-color: rgb(93, 192, 93);
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+
+
+            &:hover {
+                background-color: whitesmoke;
+                color: rgb(93, 192, 93);
+                transition: background-color 0.3s ease, color 0.3s ease;
+            }
+        }
+
+    }
+
+    .product-info-container {
+        display: flex;
+        margin-bottom: 20px;
+
+        .product-info-chart {
+            .chart {
+                margin: 5px;
+            }
+
+            flex: 3;
+        }
+
+        .product-info-details-container {
+            flex: 1;
+            margin: 5px 0 5px 20px;
+            padding: 30px;
+            border-radius: 10px;
+            -webkit-box-shadow: 0px 0px 16px -5px rgba(100, 100, 100, 0.3);
+            -moz-box-shadow: 0px 0px 16px -5px rgba(100, 100, 100, 0.3);
+            box-shadow: 0px 0px 16px -5px rgba(100, 100, 100, 0.3);
+
+            .product-info-top {
+                display: flex;
+                align-items: center;
+
+                img {
+                    width: 60px;
+                    height: 60px;
+                    border: none;
+                    border-radius: 15%;
+                }
+
+                .product-info-details {
+                    margin-left: 20px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .product-name {
+                        font-size: 18px;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .product-info-bottom {
+                margin-top: 50px;
+                margin-left: 5px;
+
+                .product-info-bottom-title {
+                    font-size: 17px;
+                    font-weight: 500;
+                }
+
+                .product-info-bottom-details {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 5px;
+
+                    .product-info-title {
+                        font-weight: 600;
+                    }
+
+                    .product-info-values {
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+
+    .product-update-container {
+        margin: 10px 0 0 5px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        -webkit-box-shadow: 0px 0px 16px -5px rgba(100, 100, 100, 0.3);
+        -moz-box-shadow: 0px 0px 16px -5px rgba(100, 100, 100, 0.3);
+        box-shadow: 0px 0px 16px -5px rgba(100, 100, 100, 0.3);
+
+        .product-update {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+
+            .product-update-info {
+                margin-bottom: 10px;
+                .product-update-info-items {
+                    display: flex;
+                    flex-direction: column;
+
+                    label {
+                        font-size: 20px;
+                        font-weight: 600;
+                        margin-top: 25px;
+                        margin-bottom: 10px;
+                    }
+
+                    input {
+                        background-color: transparent;
+                        color: white;
+                        border: none;
+                        border-bottom: 2px solid white;
+                        padding: 10px;
+                        font-size: 18px;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+
+                    select {
+                        background-color: rgb(31, 31, 31);
+                        border-radius: 5px;
+                        color: white;
+                        border: none;
+                        border-bottom: 2px solid white;
+                        padding: 10px;
+                        font-size: 18px;
+                        cursor: pointer;
+                        border: none;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+            }
+
+            .product-update-image {
+                padding: 30px 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                img {
+                    width: 200px;
+                    height: 200px;
+                    object-fit: cover;
+                    border-radius: 5px;
+                }
+
+                label {
+                    background-color: var(--red-color);
+                    padding: 10px 20px;
+                    display: grid;
+                    place-items: center;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease, color 0.3s ease;
+
+                    &:hover {
+                        background-color: whitesmoke;
+                        color: var(--red-color);
+                        transition: background-color 0.3s ease, color 0.3s ease;
+                    }
+                }
+            }
+        }
+
+        button {
+            padding: 10px 40px;
+            margin: 20px;
+            background-color: rgb(44, 130, 211);
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+
+            &:hover {
+                background-color: whitesmoke;
+                color: rgb(44, 130, 211);
+                transition: background-color 0.3s ease, color 0.3s ease;
+            }
+        }
+    }
+}

@@ -70,23 +70,23 @@ router.get('/random', authenticate.verifyUser, authenticate.verifyAdmin, async (
     const type = req.query.type;
     if (type === 'series') {
         await Movies.aggregate([
-            {$match : {isSeries : true}},
-            {$sample : {size : 1}}
+            { $match: { isSeries: true } },
+            { $sample: { size: 1 } }
         ])
-        .then(movie => {
-            res.status(200).json(movie);
-        })
-        .catch(err => next(err))
+            .then(movie => {
+                res.status(200).json(movie);
+            })
+            .catch(err => next(err))
     }
     else {
         await Movies.aggregate([
-            {$match : {isSeries : false}},
-            {$sample : {size : 1}}
+            { $match: { isSeries: false } },
+            { $sample: { size: 1 } }
         ])
-        .then(movie => {
-            res.status(200).json(movie);
-        })
-        .catch(err => next(err))
+            .then(movie => {
+                res.status(200).json(movie);
+            })
+            .catch(err => next(err))
     }
 })
 

@@ -1,0 +1,32 @@
+:root {
+  --main-color: #0b0b0b;
+  --red-color: #e50914;
+  text-decoration: none;
+  font-family: Ubuntu;
+
+  li {
+    list-style: none;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  background-color: var(--main-color);
+}
+
+.App {
+
+  background-color: var(--main-color);
+  .container {
+    display: flex;
+    margin: 25px 15px 0 20px;
+
+    .other {
+      flex: 5;
+    }
+  }
+}

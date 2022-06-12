@@ -8,30 +8,38 @@ router.use(express.json());
 router.get('/', authenticate.verifyUser, authenticate.verifyAdmin, async (req, res, next) => {
     const typeQuery = req.query.type;
     const genreQuery = req.query.genre;
-    if(typeQuery){
-        if(genreQuery){
+    if (typeQuery) {
+        if (genreQuery) {
             await List.aggregate([
-                {$sample : {size : 10}},
-                {$match : {type: typeQuery, genre: genreQuery}}
+                { $sample: { size: 10 } },
+                { $match: { type: typeQuery, genre: genreQuery } }
             ])
-            .then(list => res.status(200).json(list))
-            .catch(err => next(err))
+                .then(list => res.status(200).json(list))
+                .catch(err => next(err))
         }
         else {
             await List.aggregate([
-                {$sample : {size : 10}},
-                {$match : {type: typeQuery}}
+                { $sample: { size: 10 } },
+                { $match: { type: typeQuery } }
             ])
+                .then(list => res.status(200).json(list))
+                .catch(err => next(err))
+        }
+    }
+    else if (genreQuery) {
+        await List.aggregate([
+            { $sample: { size: 10 } },
+            { $match: { genre: genreQuery } }
+        ])
             .then(list => res.status(200).json(list))
             .catch(err => next(err))
-        }
     }
     else {
         await List.aggregate([
-            {$sample : {size : 10}}
+            { $sample: { size: 10 } }
         ])
-        .then(list => res.status(200).json(list))
-        .catch(err => next(err))
+            .then(list => res.status(200).json(list))
+            .catch(err => next(err))
     }
 })
     .post('/', authenticate.verifyUser, authenticate.verifyAdmin, async (req, res, next) => {
@@ -65,20 +73,20 @@ router.get('/:id', authenticate.verifyUser, authenticate.verifyAdmin, async (req
         })
         .catch(err => next(err))
 })
-.put('/:id', authenticate.verifyUser, authenticate.verifyAdmin, async (req, res, next) => {
-    await List.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
+    .put('/:id', authenticate.verifyUser, authenticate.verifyAdmin, async (req, res, next) => {
+        await List.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
             .then(list => {
                 res.status(200).json({ status: "Updated Successfully", list: list });
             })
             .catch(err => next(err));
-})
-.delete('/:id', authenticate.verifyUser, authenticate.verifyAdmin, async (req, res, next) => {
-    await List.findByIdAndDelete(req.params.id)
+    })
+    .delete('/:id', authenticate.verifyUser, authenticate.verifyAdmin, async (req, res, next) => {
+        await List.findByIdAndDelete(req.params.id)
             .then(resp => {
                 res.status(200).json({ status: "Deleted Successfully", resp });
             })
             .catch(err => next(err));
-})
+    })
 
 
 

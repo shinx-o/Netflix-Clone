@@ -1,0 +1,99 @@
+.create-user {
+    flex: 5;
+    color: white;
+    margin: 0 30px;
+    padding: 10px 30px;
+    
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        .new-user-item {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            margin-top: 30px;
+            margin-right: 20px;
+
+            label {
+                margin-bottom: 10px;
+                font-size: 20px;
+                font-weight: 500;
+                margin-left: 10px;
+            }
+
+            input {
+                width: 70%;
+                height: 30px;
+                padding: 10px 20px;
+                font-size: 18px;
+                background-color: rgb(26, 26, 26);
+                border: 2px solid transparent;
+                border-radius: 5px;
+                color: whitesmoke;
+                outline: none;
+
+                &:focus {
+                    border: none;
+                    border: 2px solid rgb(33, 125, 211);
+                }
+            }
+
+            .new-user-gender {
+                display: flex;
+
+                span {
+                    margin-top: 10px;
+                    margin-left: 15px;
+                    margin-right: 40px;
+                    display: flex;
+                    align-items: center;
+                }
+                cursor: pointer;
+                
+                label {
+                    cursor: pointer;
+                    margin-left: 5px;
+                    margin-bottom: 0;
+                }
+                
+                input {
+                    cursor: pointer;
+                    width: 15px;
+                    height: 15px;
+                }
+            }
+                     
+            select {
+                background-color: rgb(26, 26, 26);
+                border: none;
+                color: gray;
+                border-radius: 5px;
+                width: 78%;
+                height: 50px;
+                font-size: 18px;
+                padding: 10px 20px;
+                cursor: pointer;
+
+                &:focus {
+                    outline: none;
+                }
+
+                option {
+                    color: gray;
+                }
+            }
+
+        }
+    }
+    button {
+        margin-top: 80px;
+        padding: 15px 50px;
+        font-size: 18px;
+        font-weight: 600;
+        border: none;
+        background-color: var(--red-color);
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}

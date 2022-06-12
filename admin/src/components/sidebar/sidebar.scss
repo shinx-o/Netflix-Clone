@@ -1,0 +1,40 @@
+.sidebar {
+    flex: 1;
+    height: calc(100vh - 100px);
+    position: sticky;
+    top: 70px;
+    z-index: 88;
+    background-color: rgb(12, 12, 12);
+
+    .wrapper {
+        padding: 20px;
+        color: whitesmoke;
+
+        .menu {  
+            margin-bottom: 15%;          
+            .list {
+                margin-top: 10px;
+                padding: 0 0 0 20px;
+                li {
+                    padding: 5px;
+                    display: flex;
+                    align-items: center;
+                    font-weight: 500;
+                    border-radius: 10px;
+
+                    span {
+                        margin-left: 5px;
+                    }
+
+                }
+
+                li:hover {
+                    background-color: rgba(255, 255, 255, 0.068);
+                    color: var(--red-color);
+                    cursor: pointer;
+                }
+
+            }
+        }
+    }
+}

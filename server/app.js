@@ -42,7 +42,7 @@ app.use('/users', usersRouter);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/movies', moviesRouter);
-app.use('/list', listRouter);
+app.use('/lists', listRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
