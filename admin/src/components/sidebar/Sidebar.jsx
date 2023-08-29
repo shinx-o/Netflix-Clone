@@ -4,19 +4,19 @@ import HomeIcon from '@mui/icons-material/Home';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import InsightsIcon from '@mui/icons-material/Insights';
 import PersonIcon from '@mui/icons-material/Person';
-import CategoryIcon from '@mui/icons-material/Category';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import BarChartIcon from '@mui/icons-material/BarChart';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import EmailIcon from '@mui/icons-material/Email';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import MessageIcon from '@mui/icons-material/Message';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import ReportIcon from '@mui/icons-material/Report';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Link } from 'react-router-dom'
 
-export default function Sidebar() {
+export default function Sidebar({style}) {
     return (
-        <div className='sidebar'>
+        <div className='sidebar' style={style}>
             <div className="wrapper">
                 <div className="menu">
                     <h5>Dashboard</h5>
@@ -50,10 +50,10 @@ export default function Sidebar() {
                                 <span>Users</span>
                             </li>
                         </Link>
-                        <Link className='link' to='/products'>
+                        <Link className='link' to='/movies'>
                             <li>
-                                <CategoryIcon />
-                                <span>Products</span>
+                                <PlayArrowIcon />
+                                <span>Movies</span>
                             </li>
                         </Link>
                         <Link className='link' to='/transactions'>
@@ -62,10 +62,10 @@ export default function Sidebar() {
                                 <span>Transactions</span>
                             </li>
                         </Link>
-                        <Link className='link' to='/reports'>
+                        <Link className='link' to='/lists'>
                             <li>
-                                <BarChartIcon />
-                                <span>Reports</span>
+                                <FormatListBulletedIcon />
+                                <span>List</span>
                             </li>
                         </Link>
                     </ul>

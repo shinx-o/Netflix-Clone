@@ -25,12 +25,13 @@
         .right {
             display: flex;
             align-items: center;
-            
+
             .container {
                 cursor: pointer;
                 margin: 0 5px;
                 position: relative;
-                span {
+
+                .badges {
                     font-size: 10px;
                     width: 15px;
                     height: 15px;
@@ -47,6 +48,7 @@
                 &:hover {
                     color: var(--red-color);
                 }
+
             }
 
             img {
@@ -57,6 +59,20 @@
                 border-radius: 25px;
             }
 
+            .logout-btn {
+                cursor: pointer;
+                background: transparent;
+                border: none;
+                color: white;
+                
+                .logout {
+
+                    &:hover {
+                        color: var(--red-color);
+                    }
+                }
+
+            }
         }
     }
 }

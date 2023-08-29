@@ -8,8 +8,8 @@ router.use(express.json());
 router.get('/', authenticate.verifyUser, authenticate.verifyAdmin, async (req, res, next) => {
     const typeQuery = req.query.type;
     const genreQuery = req.query.genre;
-    if (typeQuery) {
-        if (genreQuery) {
+    if (typeQuery || typeQuery !== undefined) {
+        if (genreQuery || genreQuery !== undefined) {
             await List.aggregate([
                 { $sample: { size: 10 } },
                 { $match: { type: typeQuery, genre: genreQuery } }
@@ -43,19 +43,14 @@ router.get('/', authenticate.verifyUser, authenticate.verifyAdmin, async (req, r
     }
 })
     .post('/', authenticate.verifyUser, authenticate.verifyAdmin, async (req, res, next) => {
-        const newList = new List({
-            title: req.body.title,
-            type: req.body.type,
-            genre: req.body.genre,
-            content: req.body.content
-        });
+        const newList = new List(req.body);
 
         await newList.save()
             .then(list => {
-                res.status(200).json({ status: 'List Created Successfully', list: list });
+                res.status(200).json( list );
             })
             .catch(err => {
-                res.status(403).json({ status: "failed", error: err });
+                res.status(403).json(err);
             });
     })
     .delete('/', authenticate.verifyUser, authenticate.verifyAdmin, async (req, res, next) => {

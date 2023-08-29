@@ -1,16 +1,13 @@
 import React from 'react'
 import './user.scss'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import EmailIcon from '@mui/icons-material/Email';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
+import { useState } from 'react';
+
 
 export default function User() {
-
-
+    const editUser = useLocation().state.user
+    const [pfp , setPfp] = useState(null);
 
     return (
         <div className='user'>
@@ -23,34 +20,27 @@ export default function User() {
             <div className="user-information-container">
                 <div className="user-information">
                     <div className="user-info-top">
-                        <img src="https://images.pexels.com/photos/1851164/pexels-photo-1851164.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+                        <img src={editUser.profilePic ? editUser.profilePic : 'https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg'} alt="" />
                         <div className="user-info-details">
-                            <span className="user-name">Ethan Hunt</span>
+                            <span className="user-name">{editUser.firstname + ' ' + editUser.lastname}</span>
                             <span className="user-jobtitle">Student</span>
                         </div>
                     </div>
                     <div className="user-info-bottom">
-                        <span className="user-info-bottom-title">Account Details</span>
                         <div className="user-info-bottom-details">
-                            <AccountCircleIcon className='user-info-icons' />
-                            <span>shinx17kowl</span>
+                            <span>ID: {editUser._id}</span>
                         </div>
                         <div className="user-info-bottom-details">
-                            <CalendarMonthOutlinedIcon className='user-info-icons' />
-                            <span>17 Jun 2001</span>
-                        </div>
-                        <span className="user-info-bottom-title">Contact Details</span>
-                        <div className="user-info-bottom-details">
-                            <PhoneAndroidIcon className='user-info-icons' />
-                            <span>89392923254</span>
+                            <span>Username: {editUser.email}</span>
                         </div>
                         <div className="user-info-bottom-details">
-                            <EmailIcon className='user-info-icons' />
-                            <span>shinx@email.com</span>
+                            <span>First Name: {editUser.firstname}</span>
                         </div>
                         <div className="user-info-bottom-details">
-                            <LocationOnIcon className='user-info-icons' />
-                            <span>Bhopal, India</span>
+                            <span>Last Name: {editUser.lastname}</span>
+                        </div>
+                        <div className="user-info-bottom-details">
+                            <span>isAdmin: {editUser.admin ? "Yes" : "No"}</span>
                         </div>
                     </div>
                 </div>
@@ -60,30 +50,22 @@ export default function User() {
                         <div className="user-update-left">
                             <div className="user-update-items">
                                 <label>Username</label>
-                                <input type="text" className='user-update-input' placeholder='shinx17' />
+                                <input type="text" className='user-update-input' placeholder='username' />
                             </div>
                             <div className="user-update-items">
-                                <label>Full Name</label>
-                                <input type="text" placeholder='Ethan Hunt' />
+                                <label>First Name</label>
+                                <input type="text" placeholder='first name' />
                             </div>
                             <div className="user-update-items">
-                                <label>Email</label>
-                                <input type="text" placeholder='shinx@email.com' />
-                            </div>
-                            <div className="user-update-items">
-                                <label>Phone</label>
-                                <input type="text" placeholder='8939293254' />
-                            </div>
-                            <div className="user-update-items">
-                                <label>Address</label>
-                                <input type="text" placeholder='Bhopal, India' />
+                                <label>Last Name</label>
+                                <input type="text" placeholder='last name' />
                             </div>
                         </div>
                         <div className="user-update-right">
                             <div className="user-update-img">
-                                <img src="https://images.pexels.com/photos/1851164/pexels-photo-1851164.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-                                <label htmlFor="file"><FileUploadIcon className="user-img-upload" /></label>
-                                <input type="file" id='file' style={{ display: 'none' }} />
+                                <img src={pfp ? URL.createObjectURL(pfp) : editUser.profilePic ? editUser.profilePic : "https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg"} alt="" />
+                                <label htmlFor="profilePic"><FileUploadIcon className="user-img-upload" /></label>
+                                <input type="file" id='profilePic' name='profilePic' style={{ display: 'none' }} onChange={e => setPfp(e.target.files[0])}/>
                             </div>
                             <button className="user-update-btn">Update</button>
                         </div>

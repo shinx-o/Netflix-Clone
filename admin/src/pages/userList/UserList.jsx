@@ -1,51 +1,78 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './userlist.scss'
 import { DataGrid } from '@mui/x-data-grid';
-import { userRows } from '../../testData'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom'
+import { UserContext } from '../../context/userContext/UserContext';
+import { AuthContext } from '../../context/authContext/AuthContext';
+import { getUsers , deleteUser } from '../../context/userContext/apiCalls'
 
 export default function UserList() {
+    const {users, dispatch} = useContext(UserContext);
+    const {user} = useContext(AuthContext);
 
-    const [data , setData] = useState(userRows);
+    useEffect(() => {
+        getUsers(dispatch);
+    },[dispatch])
 
     const handleDelete = (id) => {
-        setData(data.filter((item) => item.id !== id));
+        deleteUser(id, dispatch)
     }
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
+        { field: '_id', headerName: 'ID', width: 250 },
         {
-            field: 'username',
-            headerName: 'User',
-            width: 200,
-            editable: true,
+            field: 'email',
+            headerName: 'Username',
+            width: 300,
+            editable: false,
             renderCell: (params) => {
                 return (
                     <div className="username-container">
-                        <img src={params.row.avatar} alt="" />
-                        {params.row.username}
+                        <img src={params.row.profilePic ? params.row.profilePic : 'https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg'} alt="Not Found" />
+                        {params.row.email}
                     </div>
                 )
             }
         },
         {
-            field: 'email',
-            headerName: 'Email',
-            width: 200,
-            editable: true,
+            field: 'firstname',
+            headerName: 'First Name',
+            width: 100,
+            editable: false,
+            renderCell: (params) => {
+                return (
+                    <div className="rendered-cell" style={{width : '80%' , textAlign : 'center'}}>
+                        {params.row.firstname}
+                    </div>
+                )
+            }
         },
         {
-            field: 'status',
-            headerName: 'Status',
-            width: 200,
-            editable: true,
+            field: 'lastname',
+            headerName: 'Last Name',
+            width: 100,
+            editable: false,
+            renderCell: (params) => {
+                return (
+                    <div className="rendered-cell" style={{width : '80%' , textAlign : 'center'}}>
+                        {params.row.lastname}
+                    </div>
+                )
+            }
         },
         {
-            field: 'transaction',
-            headerName: 'Transactions',
-            width: 300,
-            editable: true,
+            field: 'admin',
+            headerName: 'Is Admin',
+            width: 100,
+            editable: false,
+            renderCell: (params) => {
+                return (
+                    <div className="admin" style={{width : '80%' , textAlign : 'center'}}>
+                        {params.row.admin ? "Yes" : "No"}
+                    </div>
+                )
+            }
         },
         {
             field: 'action',
@@ -54,10 +81,10 @@ export default function UserList() {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/users/" + params.row.id}>
-                            <button className='action-button'>Edit</button>
+                        <Link className='link' to={"/users/" + params.row._id} state={{user : params.row}} >
+                            <button style={params.row._id === user._id ? {display : 'inline'} : {display : 'none'}} className='action-button'>Edit</button>
                         </Link>
-                        <DeleteIcon className='delete-button' onClick={() => handleDelete(params.row.id)} />
+                        <DeleteIcon style={params.row._id === user._id ? {display : 'inline'} : {display : 'none'}} className='delete-button' onClick={() => handleDelete(params.row._id)} />
                     </>
                 )
             }
@@ -70,12 +97,13 @@ export default function UserList() {
                 <DataGrid
                     autoHeight
                     className='grid'
-                    rows={data}
+                    rows={users}
                     columns={columns}
                     pageSize={10}
                     rowsPerPageOptions={[10]}
                     checkboxSelection
                     disableSelectionOnClick={true}
+                    getRowId={r => r._id}
                 />
             </div>
         </div>

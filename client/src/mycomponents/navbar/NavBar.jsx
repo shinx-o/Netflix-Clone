@@ -1,19 +1,37 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './NavBar.scss'
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import NetflixLogo from '../../media-files/images/netflixlogo.png'
-import pfp from '../../media-files/images/anime1.jpg'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/authContext/AuthContext';
+import { GenreContext } from '../../context/genreContext/GenreContext';
+import { loggingOut } from '../../context/authContext/apiCalls';
+import { useNavigate } from 'react-router-dom';
+import { setGenre } from '../../context/genreContext/apiCalls';
 
 const NavBar = ({ type }) => {
 
     const [isScrolled, setIsScrolled] = useState(false);
+    const { dispatch, user } = useContext(AuthContext);
+    const { dispatch: genreDispatch } = useContext(GenreContext);
+
+    const navigate = useNavigate();
+
+    const handleLogOut = (e) => {
+        e.preventDefault();
+        navigate('/')
+        loggingOut(dispatch);
+    }
 
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true);
         return () => (window.onscroll = null)
+    }
+
+    const handleGenre = (e) => {
+        setGenre(e.target.value === 'null' ? undefined : e.target.value , genreDispatch);
     }
 
 
@@ -34,8 +52,9 @@ const NavBar = ({ type }) => {
                     <span>New & Popular</span>
                     <span>My List</span>
                     {type &&
-                        <select name="genre" id="genre">
-                            <option value="none" defaultValue={true}>Genre</option>
+                        <select name="genre" id="genre" onChange={(e) => handleGenre(e)}>
+                            <option value="null" defaultValue={true}>Genre</option>
+                            <option value="null">Random</option>
                             <option value="action">Action</option>
                             <option value="adventure">Adventure</option>
                             <option value="animation">Animation</option>
@@ -60,12 +79,12 @@ const NavBar = ({ type }) => {
                     <SearchIcon className='icon' />
                     <span>children</span>
                     <NotificationsIcon className='icon' />
-                    <img src={pfp} alt="" />
+                    <img src={user && user.profilePic} alt="" />
                     <div className="profile">
                         <ArrowDropDownIcon className='icon' />
                         <div className="options">
                             <span>Account</span>
-                            <span>Sign Out</span>
+                            <span onClick={e => handleLogOut(e)}>Sign Out</span>
                         </div>
                     </div>
                 </div>

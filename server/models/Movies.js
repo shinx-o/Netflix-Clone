@@ -8,8 +8,9 @@ const MovieSchema = new mongoose.Schema({
     imageThumbnail : {type: String},
     trailer : {type: String},
     video : {type : String},
+    duration : {type: String},
     year : {type : Number},
-    rating : {type : Number},
+    rating : {type : String},
     cast : {type: String},
     genre : {type: String},
     isSeries : {type : Boolean, default : false}

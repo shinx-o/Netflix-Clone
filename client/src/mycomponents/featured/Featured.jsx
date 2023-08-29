@@ -16,13 +16,13 @@ export default function Featured({ type }) {
                 if (type) {
                     res = await axios.get('movies/random?type=' + type, {
                         headers: {
-                            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWNiMGI0NjU5YWYxYmVjMzY0MzIwYiIsImlhdCI6MTY1NDgwMTcwMiwiZXhwIjoxNjU1MjMzNzAyfQ.LnbLkoxvVtuHvsh0LwOyY55j4xxihJLDnBOElsGJ-Vw"
+                            Authorization: "Bearer " + JSON.parse(localStorage.getItem('user')).accessToken
                         },
                     })
                 } else {
                     res = await axios.get('movies/random', {
                         headers: {
-                            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWNiMGI0NjU5YWYxYmVjMzY0MzIwYiIsImlhdCI6MTY1NDgwMTcwMiwiZXhwIjoxNjU1MjMzNzAyfQ.LnbLkoxvVtuHvsh0LwOyY55j4xxihJLDnBOElsGJ-Vw"
+                            Authorization: "Bearer " + JSON.parse(localStorage.getItem('user')).accessToken
                         },
                     })
                 }
@@ -41,9 +41,9 @@ export default function Featured({ type }) {
             <img src={content.image} alt="" />
             <div className="info">
                 <img src={content.imageTitle} alt="title" />
-                <span className='desc'>{content.description}</span>
+                <span className='desc'>{content.desc}</span>
                 <div className="buttons">
-                    <Link to='/watch' state={content}>
+                    <Link to='/watch' state={content} className='link'>
                         <button className="play">
                             <PlayArrowIcon />
                             <span>Play</span>

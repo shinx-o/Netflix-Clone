@@ -42,7 +42,7 @@ exports.verifyAdmin = (req, res, next) => {
         return next();
     } else {
         let err = new Error('You Are Unauthorized!');
-        err.status = 401;
+        err.status = 500;
         return next(err);
     }
 };

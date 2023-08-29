@@ -17,7 +17,7 @@ export default function ListItem({ item, index }) {
             try {
                 const res = await axios.get(`movies/find/${item}`, {
                     headers: {
-                        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWNiMGI0NjU5YWYxYmVjMzY0MzIwYiIsImlhdCI6MTY1NDgwMTcwMiwiZXhwIjoxNjU1MjMzNzAyfQ.LnbLkoxvVtuHvsh0LwOyY55j4xxihJLDnBOElsGJ-Vw"
+                        Authorization: "Bearer " + JSON.parse(localStorage.getItem('user')).accessToken
                     },
                 })
                 setMovie(res.data)
@@ -33,17 +33,17 @@ export default function ListItem({ item, index }) {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <Link to={{pathname: '/watch'}} state={movie}>
+        <Link to={{ pathname: '/watch' }} state={movie}>
             <div
                 ref={listRef}
                 className='list-item'
                 style={{ left: isHovered && index * 289 - 20 + index * 10 }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}>
-                <img src={movie.image} alt="" />
+                <img src={movie ? movie.imageThumbnail : "https://images.pexels.com/photos/12312075/pexels-photo-12312075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} alt="" />
                 {isHovered && (
                     <>
-                        <video src={movie.trailer} autoPlay={true} loop muted></video>
+                        <video src={movie && movie.trailer} autoPlay={true} loop muted></video>
                         <div className="item-info">
                             <div className="icons">
                                 <PlayCircleIcon className='icon' />

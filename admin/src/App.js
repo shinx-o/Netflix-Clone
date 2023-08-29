@@ -9,23 +9,38 @@ import Product from './pages/product/Product';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CreateUser from './pages/createUser/CreateUser';
 import CreateProduct from './pages/newProduct/CreateProduct';
+import Login from './pages/login/Login';
+import { useContext } from 'react';
+import { AuthContext } from './context/authContext/AuthContext';
+import Lists from './pages/lists/Lists';
+import EditList from './pages/editList/EditList';
+import CreateList from './pages/newList/CreateList';
 
 function App() {
+  const { user } = useContext(AuthContext);
+
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <Navbar style={!user ? { display: 'none' } : {}} />
         <div className="container">
-          <Sidebar />
+          <Sidebar style={!user ? { display: 'none' } : {}} />
           <div className="other">
             <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/users' element={<UserList />} />
-              <Route path='/products' element={<ProductList />} />
-              <Route path='/users/:id' element={<User />} />
-              <Route path='/products/:id' element={<Product />} />
-              <Route path='/newUser' element={<CreateUser />} />
-              <Route path='/newProduct' element={<CreateProduct />} />
+              <Route path='/' element={user ? <Home /> : <Login />} />
+              {user &&
+                <>
+                  <Route path='/users' element={<UserList />} />
+                  <Route path='/movies' element={<ProductList />} />
+                  <Route path='/users/:id' element={<User />} />
+                  <Route path='/movies/:id' element={<Product />} />
+                  <Route path='/newUser' element={<CreateUser />} />
+                  <Route path='/new-movie' element={<CreateProduct />} />
+                  <Route path='/lists' element={<Lists />} />
+                  <Route path='/lists/:id' element={<EditList />} />
+                  <Route path='/new-list' element={<CreateList />} />
+                </>
+              }
             </Routes>
           </div>
         </div>

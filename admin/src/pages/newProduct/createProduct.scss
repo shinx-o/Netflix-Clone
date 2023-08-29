@@ -2,7 +2,44 @@
     flex: 5;
     color: white;
     margin: 0 30px;
+    margin-bottom: 20px;
     padding: 10px 30px;
+
+    .movie-title-container {
+        margin: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 8px;
+        position: relative;
+            .progress {
+                position: absolute;
+                bottom: 0;
+                height: 4px;
+                background-color: rgb(67, 165, 67);
+                width: 0%;
+            }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: 500;
+            border: none;
+            background-color: var(--red-color);
+            color: white;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+
+
+            &:hover {
+                background-color: whitesmoke;
+                color: var(--red-color);
+                transition: background-color 0.3s ease, color 0.3s ease;
+            }
+        }
+
+    }
 
     .create-product-container {
         display: flex;
@@ -12,14 +49,19 @@
 
             form {
                 display: flex;
-                flex-direction: column;
+                .left-container {
+                    flex: 1;
+                }
 
+                .right-container {
+                    flex: 1;
+                }
                 .new-product-item {
-                    width: 50%;
+                    width: 100%;
                     display: flex;
                     flex-direction: column;
                     margin-top: 30px;
-                    margin-right: 20px;
+                    margin-right: 10px;
 
                     label {
                         margin-bottom: 10px;
@@ -28,16 +70,17 @@
                         margin-left: 10px;
                     }
 
-                    input {
+                    textarea {
                         width: 70%;
-                        height: 30px;
                         padding: 10px 20px;
-                        font-size: 18px;
+                        font-size: 16px;
                         background-color: rgb(26, 26, 26);
                         border: 2px solid transparent;
                         border-radius: 5px;
                         color: whitesmoke;
                         outline: none;
+                        font-weight: 400;
+                        resize: none;
 
                         &:focus {
                             border: none;
@@ -45,29 +88,35 @@
                         }
                     }
 
-                    .new-product-gender {
-                        display: flex;
+                    input {
+                        width: 70%;
+                        height: 30px;
+                        padding: 10px 20px;
+                        font-size: 16px;
+                        background-color: rgb(26, 26, 26);
+                        border: 2px solid transparent;
+                        border-radius: 5px;
+                        color: whitesmoke;
+                        outline: none;
+                        font-weight: 400;
 
-                        span {
-                            margin-top: 10px;
-                            margin-left: 15px;
-                            margin-right: 40px;
-                            display: flex;
-                            align-items: center;
+                        &:focus {
+                            border: none;
+                            border: 2px solid rgb(33, 125, 211);
                         }
+                    }
 
+                    .file-uploads {
+                        display: flex;
+                        align-items: center;
                         cursor: pointer;
 
-                        label {
-                            cursor: pointer;
-                            margin-left: 5px;
-                            margin-bottom: 0;
-                        }
+                        .movie-upload-icon {
+                            margin-left: 20px;
 
-                        input {
-                            cursor: pointer;
-                            width: 15px;
-                            height: 15px;
+                            &:hover {
+                                color: var(--red-color);
+                            }
                         }
                     }
 
@@ -76,7 +125,7 @@
                         border: none;
                         color: gray;
                         border-radius: 5px;
-                        width: 78%;
+                        width: 76%;
                         height: 50px;
                         font-size: 18px;
                         padding: 10px 20px;
@@ -93,69 +142,6 @@
 
                 }
             }
-        }
-
-        .product-image-upload {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            img {
-                margin-top: 30px;
-                width: 60%;
-                aspect-ratio: 1 / 1;
-                border-radius: 10px;
-                object-fit: cover;
-            }
-
-            label {
-                margin-top: 20px;
-                padding: 10px 20px;
-                display: flex;
-                width: 51%;
-                align-items: center;
-                justify-content: space-around;
-                background-color: var(--red-color);
-                border-radius: 10px;
-                cursor: pointer;
-                transition: background-color 0.3s ease, color 0.3s ease;
-
-                &:hover {
-                    background-color: whitesmoke;
-                    color: var(--red-color);
-                    transition: background-color 0.3s ease, color 0.3s ease;
-                }
-
-                .product-img-icon {
-                    font-size: 40px;
-                }
-            }
-        }
-    }
-
-    position: relative;
-
-    button {
-        margin-top: 80px;
-        padding: 15px 50px;
-        font-size: 18px;
-        font-weight: 500;
-        border: none;
-        background-color: var(--red-color);
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-        position: absolute;
-        bottom: -25%;
-        left: 40%;
-        transition: background-color 0.3s ease, color 0.3s ease;
-
-
-        &:hover {
-            background-color: whitesmoke;
-            color: var(--red-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
     }
 }

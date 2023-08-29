@@ -8,24 +8,12 @@ router.use(express.json());
 router.get('/', authenticate.verifyUser, authenticate.verifyAdmin, async (req, res, next) => {
     await Movies.find({})
         .then(movie => {
-            res.status(200).json({ count: movie.length, movies: movie.reverse() });
+            res.status(200).json(movie.reverse());
         }, err => next(err))
         .catch(err => next(err));
 })
     .post('/', authenticate.verifyUser, authenticate.verifyAdmin, async (req, res, next) => {
-        const newMovie = new Movies({
-            title: req.body.title,
-            desc: req.body.desc,
-            image: req.body.image,
-            imageTitle: req.body.imageTitle,
-            trailer: req.body.trailer,
-            video: req.body.video,
-            year: req.body.year,
-            rating: req.body.rating,
-            cast: req.body.cast,
-            genre: req.body.genre,
-            isSeries: req.body.isSeries
-        });
+        const newMovie = new Movies(req.body);
 
         await newMovie.save()
             .then(movie => {

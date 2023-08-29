@@ -4,7 +4,7 @@ import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ListItem from '../listItem/ListItem';
 
-export default function List({ list}) {
+export default function List({list}) {
 
     const [isMoved, setIsMoved] = useState(false);
     const [slideNumber, setSlideNumber] = useState(0);
@@ -31,6 +31,12 @@ export default function List({ list}) {
             <div className="wrapper">
                 <ArrowBackIosOutlinedIcon className='slider-arrow left' onClick={() => { sliderMove('left') }} style={{ display: !isMoved && 'none' }} />
                 <div className="container" ref={listRef} >
+                    {list.content.map((item, key) => {
+                        return (<ListItem item={item} key={key} index={key} />)
+                    })}
+                    {list.content.map((item, key) => {
+                        return (<ListItem item={item} key={key} index={key} />)
+                    })}
                     {list.content.map((item, key) => {
                         return (<ListItem item={item} key={key} index={key} />)
                     })}
